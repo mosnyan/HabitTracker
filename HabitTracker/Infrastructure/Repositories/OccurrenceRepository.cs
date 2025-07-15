@@ -1,7 +1,7 @@
-﻿using HabitTracker.Models;
+﻿using HabitTracker.Domain.Models;
 using Microsoft.Data.Sqlite;
 
-namespace HabitTracker.Repositories;
+namespace HabitTracker.Infrastructure.Repositories;
 
 public class OccurrenceRepository(string connectionString)
 {

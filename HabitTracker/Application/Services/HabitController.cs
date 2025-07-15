@@ -1,7 +1,7 @@
-﻿using HabitTracker.Models;
-using HabitTracker.Services;
+﻿using HabitTracker.Domain.Models;
+using HabitTracker.Domain.Services;
 
-namespace HabitTracker.Controllers;
+namespace HabitTracker.Application.Services;
 
 public class HabitController(HabitService habitService)
 {

@@ -1,7 +1,7 @@
-﻿using HabitTracker.Models;
-using HabitTracker.Services;
+﻿using HabitTracker.Application.DTOs;
+using HabitTracker.Domain.Services;
 
-namespace HabitTracker.Controllers;
+namespace HabitTracker.Application.Services;
 
 public class OccurrenceController(OccurrenceService occurrenceService)
 {

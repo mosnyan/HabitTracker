@@ -1,5 +1,5 @@
-﻿using HabitTracker.Models;
-using HabitTracker.Repositories;
+﻿using HabitTracker.Domain.Models;
+using HabitTracker.Infrastructure.Repositories;
 using Microsoft.Data.Sqlite;
 
 namespace DatabaseTests;

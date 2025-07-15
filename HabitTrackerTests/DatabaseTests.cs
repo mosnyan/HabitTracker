@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
-using HabitTracker.Database;
+﻿using HabitTracker.Infrastructure.Persistence;
+using Microsoft.Data.Sqlite;
 
 namespace DatabaseTests;
 

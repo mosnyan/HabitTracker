@@ -1,7 +1,7 @@
-﻿using HabitTracker.Models;
-using HabitTracker.Repositories;
+﻿using HabitTracker.Domain.Models;
+using HabitTracker.Infrastructure.Repositories;
 
-namespace HabitTracker.Services;
+namespace HabitTracker.Domain.Services;
 
 public class HabitService(HabitRepository habitRepo)
 {

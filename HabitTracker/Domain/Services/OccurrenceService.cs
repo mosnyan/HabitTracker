@@ -1,8 +1,8 @@
-﻿using System.Globalization;
-using HabitTracker.Models;
-using HabitTracker.Repositories;
+﻿using HabitTracker.Application.DTOs;
+using HabitTracker.Domain.Models;
+using HabitTracker.Infrastructure.Repositories;
 
-namespace HabitTracker.Services;
+namespace HabitTracker.Domain.Services;
 
 public class OccurrenceService(OccurrenceRepository occurrenceRepo,
                                HabitRepository habitRepo)

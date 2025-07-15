@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 
-namespace HabitTracker.Database;
+namespace HabitTracker.Infrastructure.Persistence;
 
 public class Initializer(string connectionString)
 {
