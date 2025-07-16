@@ -6,12 +6,6 @@ namespace DatabaseTests;
 public class DatabaseTests
 {
     private const string ConnectionString = "Data Source = testhabitdb";
-    
-    [SetUp]
-    public void Setup()
-    {
-        // no setup needed here
-    }
 
     [Test]
     public void SuccessfullyInitializes()
