@@ -10,7 +10,7 @@ public class DatabaseTests
     [SetUp]
     public void Setup()
     {
-        
+        // no setup needed here
     }
 
     [Test]
