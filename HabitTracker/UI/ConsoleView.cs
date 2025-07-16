@@ -107,9 +107,10 @@ public class ConsoleView : IView
 
     private string? GetUserNullableString(string what)
     {
-        Console.WriteLine($"Please enter a {what}, press CTRL+Z to skip.");
+        Console.WriteLine($"Please enter a {what}, press Enter to skip.");
         var entry = Console.ReadLine();
-        return entry;
+        if (string.IsNullOrWhiteSpace(entry)) return null;
+        else return entry;
     }
 
     public void DisplayMessage(string message)

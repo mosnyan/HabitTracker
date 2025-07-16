@@ -10,6 +10,8 @@ public class Initializer(string connectionString)
         using (var connection = new SqliteConnection(connectionString))
         {
             connection.Open();
+            var enforceForeignKeys = new SqliteCommand("PRAGMA foreign_keys = ON", connection);
+            enforceForeignKeys.ExecuteNonQuery();
             CreateHabitsTable(connection);
             CreateOccurrencesTable(connection);
         }
@@ -19,8 +21,8 @@ public class Initializer(string connectionString)
     {
         string query = "CREATE TABLE IF NOT EXISTS habits" +
                        "(id INTEGER PRIMARY KEY," +
-                       "name VARCHAR(64)," +
-                       "unit VARCHAR(64))";
+                       "name VARCHAR(64) NOT NULL," +
+                       "unit VARCHAR(64) NOT NULL)";
         var command = new SqliteCommand(query, connection);
         return command.ExecuteNonQuery();
     }
@@ -29,8 +31,8 @@ public class Initializer(string connectionString)
     {
         string query = "CREATE TABLE IF NOT EXISTS occurrences" +
                        "(id INTEGER PRIMARY KEY," +
-                       "date VARCHAR(20)," +
-                       "habit_id INTEGER," +
+                       "date TEXT NOT NULL," +
+                       "habit_id INTEGER NOT NULL," +
                        "FOREIGN KEY(habit_id) REFERENCES habits(id) ON DELETE CASCADE)";
         var command = new SqliteCommand(query, connection);
         return command.ExecuteNonQuery();
