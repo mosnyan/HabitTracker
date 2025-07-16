@@ -1,11 +1,12 @@
 ﻿using HabitTracker.Application.DTOs;
 using HabitTracker.Domain.Models;
+using HabitTracker.Domain.Repositories;
 using HabitTracker.Infrastructure.Repositories;
 
-namespace HabitTracker.Domain.Services;
+namespace HabitTracker.Application.Services;
 
-public class OccurrenceService(OccurrenceRepository occurrenceRepo,
-                               HabitRepository habitRepo)
+public class OccurrenceService(IOccurrenceRepository occurrenceRepo,
+                               IHabitRepository habitRepo)
 {
     public IReadOnlyList<OccurrenceDisplayDto> GetAllOccurrences()
     {
@@ -20,9 +21,14 @@ public class OccurrenceService(OccurrenceRepository occurrenceRepo,
         return occurrencesDtos;
     }
 
-    public IReadOnlyList<OccurrenceDisplayDto> GetOccurrencesForHabit(int id)
+    public IReadOnlyList<OccurrenceDisplayDto>? GetOccurrencesForHabit(int id)
     {
-        var habit = habitRepo.GetHabitById(id) ?? new Habit(0, "unknown", "unknown");
+        var habit = habitRepo.GetHabitById(id);
+        if (habit == null)
+        {
+            return null;
+        }
+        
         var occurrences = occurrenceRepo.GetOccurrencesByHabitId(id);
 
         var occurrencesDtos = occurrences.Select(occ => new OccurrenceDisplayDto(
@@ -35,8 +41,7 @@ public class OccurrenceService(OccurrenceRepository occurrenceRepo,
 
     public bool CreateOccurrence(OccurrenceCreationDto occurrence)
     {
-        var occ = new Occurrence(occurrence.Id, occurrence.Date, occurrence.HabitId);
-        return occurrenceRepo.CreateOccurrence(occ);
+        return occurrenceRepo.CreateOccurrence(occurrence);
     }
 
     public bool DeleteOccurrenceById(int id)

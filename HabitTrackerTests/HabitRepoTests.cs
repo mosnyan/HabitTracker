@@ -1,4 +1,5 @@
-﻿using HabitTracker.Domain.Models;
+﻿using HabitTracker.Application.DTOs;
+using HabitTracker.Domain.Models;
 using HabitTracker.Infrastructure.Repositories;
 using Microsoft.Data.Sqlite;
 
@@ -37,14 +38,14 @@ public class HabitRepoTests
     [Test]
     public void AddOneHabit()
     {
-        var habit = new Habit(0,"thing", "tests");
+        var habit = new HabitCreationDto("thing", "tests");
         Assert.That(_habitRepo.CreateHabit(habit), Is.True);
     }
 
     [Test]
     public void ReturnsOneHabit()
     {
-        var habit = new Habit(0,"thing", "tests");
+        var habit = new HabitCreationDto("thing", "tests");
         _habitRepo.CreateHabit(habit);
         var habits = _habitRepo.GetAllHabits();
         Assert.That(habits.Count, Is.EqualTo(1));
@@ -55,7 +56,7 @@ public class HabitRepoTests
     [Test]
     public void ReturnsOneHabitById()
     {
-        var newHabit = new Habit(0,"thing", "tests");
+        var newHabit = new HabitCreationDto("thing", "tests");
         Assert.That(_habitRepo.CreateHabit(newHabit), Is.True);
         var habit = _habitRepo.GetHabitById(1);
         Assert.That(habit!.Name, Is.EqualTo("thing"));
@@ -72,9 +73,9 @@ public class HabitRepoTests
     [Test]
     public void SuccessfullyUpdateHabit()
     {
-        var newHabit = new Habit(0,"thing", "tests");
+        var newHabit = new HabitCreationDto("thing", "tests");
         Assert.That(_habitRepo.CreateHabit(newHabit), Is.True);
-        var updatedHabit = new Habit(1, "thingy", "testamundo");
+        var updatedHabit = new Habit(1,"thingy", "testamundo");
         Assert.That(_habitRepo.UpdateHabit(updatedHabit), Is.True);
         Assert.That(updatedHabit!.Name, Is.EqualTo("thingy"));
         Assert.That(updatedHabit!.Unit, Is.EqualTo("testamundo"));
@@ -90,7 +91,7 @@ public class HabitRepoTests
     [Test]
     public void SuccessfullyDeleteHabit()
     {
-        var newHabit = new Habit(0,"thing", "tests");
+        var newHabit = new HabitCreationDto("thing", "tests");
         Assert.That(_habitRepo.CreateHabit(newHabit), Is.True);
         Assert.That(_habitRepo.DeleteHabitById(1), Is.True);
     }

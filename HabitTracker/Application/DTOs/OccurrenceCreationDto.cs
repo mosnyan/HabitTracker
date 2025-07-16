@@ -1,3 +1,3 @@
 ﻿namespace HabitTracker.Application.DTOs;
 
-public record OccurrenceCreationDto(int Id, int HabitId, string Date);
+public record OccurrenceCreationDto(string Date, int HabitId);
